@@ -14,7 +14,7 @@ export class AuthService {
   //}
 
 
-  getHeroes(): void {} // stub
+  getHeroes(): void { alert('coucou');} // stub
 
   /*login(mail : string, password : string) : void {
     //todo MLE implement

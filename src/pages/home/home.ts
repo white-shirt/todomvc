@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { NavController } from 'ionic-angular';
+import {AuthService} from "../../app/auth.service";
 
 @Component({
   selector: 'page-home',
@@ -8,11 +9,11 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, private authService : AuthService) {
 
   }
 
   testLogin() {
-    //todo //this.authService.getHeroes();//('mail','password');
+    this.authService.getHeroes();//('mail','password');
   }
 }
