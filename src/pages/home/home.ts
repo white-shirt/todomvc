@@ -15,5 +15,4 @@ export class HomePage {
   testLogin() {
     //todo //this.authService.getHeroes();//('mail','password');
   }
-
 }
