@@ -5,6 +5,7 @@ import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
+import { TodoListPage } from '../pages/todo-list/todo-list';
 import { AuthService } from './auth.service';
 
 @NgModule({
@@ -13,7 +14,8 @@ import { AuthService } from './auth.service';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    TodoListPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -24,7 +26,8 @@ import { AuthService } from './auth.service';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    TodoListPage
   ],
   providers: [AuthService]
 })
