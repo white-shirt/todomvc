@@ -7,6 +7,7 @@ import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { TodoListPage } from '../pages/todo-list/todo-list';
 import { AuthService } from './auth.service';
+import { TodoService } from '../providers/todo.service'
 
 @NgModule({
   declarations: [
@@ -29,6 +30,6 @@ import { AuthService } from './auth.service';
     TabsPage,
     TodoListPage
   ],
-  providers: [AuthService]
+  providers: [AuthService, TodoService]
 })
 export class AppModule {}
