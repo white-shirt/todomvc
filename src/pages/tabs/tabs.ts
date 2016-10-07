@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
+import { NavController } from 'ionic-angular';
 
 import { HomePage } from '../home/home';
 import { AboutPage } from '../about/about';
 import { ContactPage } from '../contact/contact';
 import { TodoListPage } from '../todo-list/todo-list';
+import {AuthService} from "../../app/auth.service";
+import { LoginPage } from '../login/login';
 
 @Component({
   templateUrl: 'tabs.html'
@@ -16,7 +19,13 @@ export class TabsPage {
   tab3Root: any = ContactPage;
   tab4Root: any = TodoListPage;
 
-  constructor() {
+  constructor(public navCtrl: NavController, public authService : AuthService) {
+
+    //console.log('check auth : '+this.mail);
+    //authService.checkAuthentication(); //todo on each modules ? in constructor ?
+    if (this.authService.isAuthenticated()) return;
+
+    this.navCtrl.push(LoginPage);
 
   }
 }

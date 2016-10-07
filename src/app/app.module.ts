@@ -5,12 +5,14 @@ import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
+import { LoginPage } from '../pages/login/login';
 import { TodoListPage } from '../pages/todo-list/todo-list';
 import { AuthService } from './auth.service';
 
 @NgModule({
   declarations: [
     MyApp,
+    LoginPage,
     AboutPage,
     ContactPage,
     HomePage,
@@ -23,6 +25,7 @@ import { AuthService } from './auth.service';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    LoginPage,
     AboutPage,
     ContactPage,
     HomePage,
