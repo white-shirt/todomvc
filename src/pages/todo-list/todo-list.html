@@ -6,6 +6,16 @@
 
 <ion-content padding>
 
-  <h3>Todo List</h3>
+
+  <ion-list inset>
+    <ion-item *ngFor="let todo of todos">
+      <h3>{{todo.titre}}</h3>
+      <p>{{todo.description}}</p>
+    </ion-item>
+  </ion-list>
+
+  <ion-fab bottom right>
+    <button ion-fab (click)="addTodo()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
 
 </ion-content>
