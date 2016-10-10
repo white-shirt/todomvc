@@ -1,0 +1,33 @@
+<ion-header>
+
+    <ion-toolbar no-border-top>
+        <ion-title>Detail Todo</ion-title>
+        <ion-buttons end>
+        <button ion-button type="submit" form="myForm">
+            <ion-icon name="checkmark-circle-outline" color="primary"></ion-icon>
+        </button>
+        <button ion-button (click)="cancel()">
+            <ion-icon name="close" color="danger"></ion-icon>
+        </button>
+        </ion-buttons>
+    </ion-toolbar>
+
+</ion-header>
+
+<ion-content padding>
+
+<form id="myForm" (ngSubmit)="validateAddTodo()">
+  <ion-list>
+    <ion-item>
+      <ion-label color="primary" stacked>Titre</ion-label>
+      <ion-input name="titre" type="text" [(ngModel)]="todo.titre" placeholder="votre titre ..."></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Description</ion-label>
+      <ion-textarea name="description" [(ngModel)]="todo.description" rows="6" placeholder="votre description ..."></ion-textarea>
+    </ion-item>
+  </ion-list>
+</form>
+
+</ion-content>

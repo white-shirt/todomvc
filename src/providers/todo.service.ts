@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+//import { AppContextService } from './app-context.service';
 
 //import { Observable } from 'rxjs/Observable' ;
 //import 'rxjs/Rx';
@@ -15,17 +16,21 @@ export class TodoService {
             {titre: 'Tache 5', description: 'bla bla bla bla bla bla bla bla'}
         ];
 
-    constructor() {}
-
+    constructor(/*private appContextService : AppContextService*/) {}
 
     getListTodos() {
-        return  TodoService.DATA_TEST;
-    }
-  /*     
+    //    this.appContextService.todos = TodoService.DATA_TEST ;
+        return TodoService.DATA_TEST;
+    /*     
         return Observable.create(observer => {
             observer.next(DATA_TEST);
             observer.complete();
         })
-        */
-    
+    */
+    }
+
+    saveTodo(title : String, description : String) {
+  //      this.appContextService.todos.push({title: title,description:description});
+    }
+
 }
