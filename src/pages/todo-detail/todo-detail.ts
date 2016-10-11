@@ -8,16 +8,16 @@ import {TodoService} from '../../providers/todo.service';
 })
 export class TodoDetailPage {
 
-    todo = {};
+    todo = {
+        titre: 'default',
+        description: 'default'
+    };
 
     constructor(public navCtrl: NavController, public navParams: NavParams, public todoService: TodoService) { }
 
     public validateAddTodo() {
-        this.navParams.get('todos').push(this.todo);
+        this.todoService.saveTodo(this.todo.titre,this.todo.description);
         this.navCtrl.pop();
-
-        // TODO Persistence
-        // todoService.saveTodo()
     }
 
     public cancel() : void {

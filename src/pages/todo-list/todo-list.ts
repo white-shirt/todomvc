@@ -12,26 +12,45 @@ import { TodoDetailPage } from '../todo-detail/todo-detail';
 })
 export class TodoListPage {
 
-  todos : any;
+    visibleCheckDelete : boolean = false ;
+    visibleButtonDelete : boolean = false ;
 
   constructor(
       public navCtrl: NavController,
       public todoService: TodoService
-      /* public appContextService : AppContextService */) {}
+  ) {}
+
+
+
+  get todos() : any {
+      return this.todoService.todos ;
+  }
 
     ngOnInit() {
-        this.todos = this.todoService.getListTodos();
+         this.todoService.loadTodos();
         
-/*      TODO
+/*      TODO Traitement des erreurs
         this.todoService.getListTodos()
-            .subscribe(data => {
-                this.todos = data ;
+            .subscribe(code => {
+                
             }) ;
 */            
     }
 
-    addTodo() {
-        //this.todos.push({titre: 'Tache Add', description: 'bla blo bla'}) ;
-        this.navCtrl.push(TodoDetailPage,{todos:this.todos});
+    gotoTodoDetail() {
+        this.navCtrl.push(TodoDetailPage);
+    }
+
+    deleteTodos() {
+        console.log('delete todos');
+        this.visibleCheckDelete = false ;
+        this.visibleButtonDelete = false ;
+        this.todoService.todos.push({titre:'hello',description:'coucou'});
+    }
+
+    press() {
+        console.log('press');
+        this.visibleCheckDelete = true ;
+        this.visibleButtonDelete = true ;
     }
 }

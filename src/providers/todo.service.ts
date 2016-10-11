@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-//import { AppContextService } from './app-context.service';
 
 //import { Observable } from 'rxjs/Observable' ;
 //import 'rxjs/Rx';
@@ -7,6 +6,10 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class TodoService {
 
+    // Data context
+    todos : Array<{}> ;
+
+    // Mock
     static DATA_TEST = 
         [
             {titre: 'Tache 1', description: 'bla bla bla'},
@@ -16,21 +19,24 @@ export class TodoService {
             {titre: 'Tache 5', description: 'bla bla bla bla bla bla bla bla'}
         ];
 
-    constructor(/*private appContextService : AppContextService*/) {}
+    constructor() {}
 
-    getListTodos() {
-    //    this.appContextService.todos = TodoService.DATA_TEST ;
-        return TodoService.DATA_TEST;
-    /*     
-        return Observable.create(observer => {
-            observer.next(DATA_TEST);
-            observer.complete();
-        })
-    */
+    // Load todos
+    loadTodos() {
+        // TODO Call persistence
+        this.todos = TodoService.DATA_TEST;
+        /*     
+            return Observable.create(observer => {
+                observer.next(DATA_TEST);
+                observer.complete();
+            })
+        */
     }
 
+    // Save todo and synchronize context
     saveTodo(title : String, description : String) {
-  //      this.appContextService.todos.push({title: title,description:description});
+        // TODO Call persistence
+        this.todos.push({titre: title, description: description}) ;
     }
 
 }

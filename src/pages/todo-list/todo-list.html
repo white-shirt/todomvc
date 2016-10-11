@@ -1,20 +1,28 @@
 <ion-header>
-  <ion-navbar>
+  <ion-toolbar no-border-top>
     <ion-title>Todo List</ion-title>
-  </ion-navbar>
+    <ion-buttons end>
+        <button ion-button *ngIf="visibleButtonDelete" (click)="deleteTodos()">
+            <ion-icon name="close" color="danger"></ion-icon>
+        </button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
 
   <ion-list inset>
-    <ion-item *ngFor="let todo of todos">
-      <h3>{{todo.titre}}</h3>
-      <p>{{todo.description}}</p>
+    <ion-item *ngFor="let todo of todos" (press)="press()">
+      <ion-checkbox *ngIf="visibleCheckDelete"></ion-checkbox>
+      <ion-label>
+        <h3>{{todo.titre}}</h3>
+        <p>{{todo.description}}</p>
+      </ion-label>
     </ion-item>
   </ion-list>
 
   <ion-fab bottom right>
-    <button ion-fab (click)="addTodo()"><ion-icon name="add"></ion-icon></button>
+    <button ion-fab (click)="gotoTodoDetail()"><ion-icon name="add"></ion-icon></button>
   </ion-fab>
 
 </ion-content>
