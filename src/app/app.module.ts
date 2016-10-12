@@ -2,6 +2,7 @@
 import { NgModule } from '@angular/core';
 import { IonicApp, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
+import { JsonPipe } from '@angular/common';
 
 // pages
 import { AboutPage } from '../pages/about/about';
@@ -41,6 +42,6 @@ import { TodoService } from '../providers/todo.service'
     TodoListPage,
     TodoDetailPage
   ],
-  providers: [AuthService, TodoService]
+  providers: [AuthService, TodoService, JsonPipe]
 })
 export class AppModule {}

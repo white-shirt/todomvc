@@ -39,4 +39,8 @@ export class TodoService {
         this.todos.push({titre: title, description: description}) ;
     }
 
+    saveTodos() {
+        // TODO Call persistence
+    }
+
 }
