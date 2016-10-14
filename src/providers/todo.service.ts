@@ -3,14 +3,15 @@ import { Injectable } from '@angular/core';
 //import { Observable } from 'rxjs/Observable' ;
 //import 'rxjs/Rx';
 
+
 @Injectable()
 export class TodoService {
 
     // Data context
-    todos : Array<{}> ;
+    public todos : Array<{}> ;
 
     // Mock
-    static DATA_TEST = 
+    static DATA_TEST =
         [
             {titre: 'Tache 1', description: 'bla bla bla'},
             {titre: 'Tache 2', description: 'bla bla'},
@@ -25,7 +26,7 @@ export class TodoService {
     loadTodos() {
         // TODO Call persistence
         this.todos = TodoService.DATA_TEST;
-        /*     
+        /*
             return Observable.create(observer => {
                 observer.next(DATA_TEST);
                 observer.complete();

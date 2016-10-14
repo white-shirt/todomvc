@@ -5,7 +5,7 @@ import { HomePage } from '../home/home';
 import { AboutPage } from '../about/about';
 import { ContactPage } from '../contact/contact';
 import { TodoListPage } from '../todo-list/todo-list';
-import {AuthService} from "../../app/auth.service";
+import {AuthService} from "../../providers/auth.service";
 import { LoginPage } from '../login/login';
 
 @Component({
