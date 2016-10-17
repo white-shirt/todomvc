@@ -6,15 +6,17 @@ declare var cordova: any
 
 // ie http://gonehybrid.com/how-to-use-pouchdb-sqlite-for-local-storage-in-ionic-2/
 // or http://www.joshmorony.com/part-2-creating-a-multiple-user-app-with-ionic-2-pouchdb-couchdb/
-let PouchDB = require('pouchdb');
+//let PouchDB = require('pouchdb');
+import PouchDB from 'pouchdb'
 
-export interface IMiappService {
+
+/*export interface IMiappService {
 
   isPouchDBEmpty(): string;
   login() : string;
   putFirstUserInEmptyPouchDB() : void;
   syncPouchDb() : void;
-}
+}*/
 
 
 @Injectable()
@@ -23,7 +25,8 @@ export class DataService {
   private _dbInitialized = false;
 
 
-  constructor(private MiappService : MiappService) {
+  constructor(){
+    //private MiappService : MiappService) {
     //this._db = new PouchDB('miapp_db', { adapter: 'websql' });
     this._db = cordova ? new PouchDB('miapp_db', {adapter: 'websql'}) : new PouchDB('miapp_db');
 

@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 
 
-//declare var require: any
-let Miapp = require('miapp.sdk.base');
+//declare var Miapp:any
+//import * as Miapp from 'miapp.sdk.base'
 
 @Injectable()
 export class MiappService {
-
+/*
         //this.$this.logger.log('SrvMiapp - init');
 
         miappClient = null;
@@ -227,14 +227,6 @@ export class MiappService {
         return UId;
     }
 
-/* todo ?
-    Service.prototype._dbFilter= function(doc){
-        var dataUserLoggedIn = this.getUserLoggedIn();
-        if (doc.miappUserId == dataUserLoggedIn.email)
-            return doc;
-        return null;
-    };
-    */
 
 
     public isPouchDBEmpty(pouchDB) {
@@ -316,6 +308,7 @@ export class MiappService {
       //this.$this.logger.log('retrievedObject: ', JSON.parse(retrievedObject));
       return obj;
     }
+    */
 }
 
 

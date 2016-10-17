@@ -6,5 +6,3 @@
 /// <reference path="globals/pouchdb-node/index.d.ts" />
 /// <reference path="globals/pouchdb-replication/index.d.ts" />
 /// <reference path="globals/pouchdb/index.d.ts" />
-/// <reference path="globals/require/index.d.ts" />
-/// <reference path="globals/requirejs/index.d.ts" />
