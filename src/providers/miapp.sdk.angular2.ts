@@ -6,6 +6,21 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class MiappService {
+
+
+
+  public isPouchDBEmpty(pouchDB) {
+    console.log('MiappService isPouchDBEmpty');
+    return Promise.resolve(true)
+  };
+
+
+  public putInPouchDb(pouchDB, data){
+    console.log('MiappService putInPouchDb');
+    return Promise.resolve(true)
+  };
+
+
 /*
         //this.$this.logger.log('SrvMiapp - init');
 

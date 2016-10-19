@@ -15,13 +15,11 @@ export class LoginPage {
 
   }
 
-  login_(){
-    alert('Login //todo');
-  }
-
   login() {
     this.authService.login('my_mail','mY_password')
       .then( () => {
+
+
 
         this.navCtrl.pop();
         //this.navCtrl.push(HomePage)

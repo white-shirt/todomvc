@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+
+import { Component, OnInit } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
 import { HomePage } from '../home/home';
@@ -21,11 +22,26 @@ export class TabsPage {
 
   constructor(public navCtrl: NavController, public authService : AuthService) {
 
+  }
+
+  //ngOnInit() {
+
     //console.log('check auth : '+this.mail);
     //authService.checkAuthentication(); //todo on each modules ? in constructor ?
+    //if (this.authService.isAuthenticated()) return;
+
+    //this.navCtrl.push(LoginPage);
+
+  //}
+
+  // Wait for the components in MyApp's template to be initialized
+  // In this case, we are waiting for the Nav with id="my-nav"
+  ngAfterViewInit() {
+    // Let's navigate from TabsPage to Page1
+    console.log('tabs view init ?');
     if (this.authService.isAuthenticated()) return;
 
     this.navCtrl.push(LoginPage);
-
+    console.log('tabs view init ?....');
   }
 }

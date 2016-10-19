@@ -1,6 +1,7 @@
 
 import { Injectable } from '@angular/core';
 import {App} from 'ionic-angular';
+import {DataService} from './data.service'
 
 @Injectable()
 export class AuthService {
@@ -9,7 +10,7 @@ export class AuthService {
   mail : string
   password : string
 
-  constructor(private app: App) {
+  constructor(private app: App, private data : DataService) {
     console.log('MyAuthService constructor')
   }
 
@@ -25,10 +26,15 @@ export class AuthService {
 
     localStorage.setItem('tokenTodo',this.mail);
 
-    return Promise.resolve(true); //logged in
+
+    return this.data.initDBWithLogin(mail, password);
+
+    //return Promise.resolve(true); //logged in
   }
 
   isAuthenticated() : boolean {
+
+    //return true;
     let token = localStorage.getItem('tokenTodo');
     return (token ? true : false);
   }
