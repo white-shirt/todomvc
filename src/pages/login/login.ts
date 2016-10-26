@@ -10,13 +10,16 @@ import { HomePage } from '../home/home';
 })
 export class LoginPage {
 
+  public email: string;
+  public password: string;
+
   constructor(public navCtrl: NavController, public authService : AuthService) {
 
 
   }
 
   login() {
-    this.authService.login('my_mail','mY_password')
+    this.authService.login(this.email,this.password)
       .then( () => {
 
 

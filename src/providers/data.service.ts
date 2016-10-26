@@ -39,33 +39,42 @@ export class DataService {
   // Set User login in DB if db empty
   // Return Promise with this._db
   initDBWithLogin(login, password) : Promise<any> {
-    if (this._dbInitialized) return Promise.reject('Already initialized');
 
-    return new Promise(function(resolve, reject) {
+
+    if (this._dbInitialized) return Promise.reject('Already initialized');
+    
+    //return this.miappService.login(login, password);
+
+
+    return new Promise((resolve, reject) => {
+
+    
       this.miappService.isPouchDBEmpty(this._db)
-        .then(function (isEmpty) {
+        .then( (isEmpty) => {
           if (!isEmpty) return Promise.resolve(); // already set
 
           return this.miappService.login(login, password);
         })
-        .then(function (firstUser) {
+        .then( (firstUser) => {
           if (!firstUser) return Promise.resolve(); // already set
 
           return this.miappService.putFirstUserInEmptyPouchDB(this._db, firstUser);
         })
-        .then(function (ret) {
+        .then( (ret) => {
           //if (ret) return deferred.reject(err);
           return this.miappService.syncPouchDb(this._db);
         })
-        .then(function (ret) {
+        .then( (ret) => {
           //if (ret) return deferred.reject(err);
           this._dbInitialized = true;
           resolve(this._db);
         })
-        .catch(function (err) {
+        .catch((err) => {
           reject(err);
         });
     });
+
+
   }
 
   // Sync Data

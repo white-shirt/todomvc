@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 
 
-//declare var Miapp:any
+declare var Miapp:any
 //import * as Miapp from 'miapp.sdk.base'
 
 @Injectable()
 export class MiappService {
 
 
-
+/*
   public isPouchDBEmpty(pouchDB) {
     console.log('MiappService isPouchDBEmpty');
     return Promise.resolve(true)
@@ -19,9 +19,9 @@ export class MiappService {
     console.log('MiappService putInPouchDb');
     return Promise.resolve(true)
   };
+*/
 
 
-/*
         //this.$this.logger.log('SrvMiapp - init');
 
         miappClient = null;
@@ -35,15 +35,15 @@ export class MiappService {
         miappSalt = 'SALT_TOKEN';
 
         _srvDataUniqId = 0;
+        
+        logger: LoggerService = new LoggerService();
 
-    constructor(private logger: ILoggerService) {}
-
-    ngOnInit() {
-        this.miappIsOffline = this.getObjectFromLocalStorage('miappIsOffline') || false;
-        this.miappURI = this.getObjectFromLocalStorage('miappURI') || 'https://miapp.io/api';
-    }
+    constructor() {}
 
     public init(miappId, miappSalt, isOffline) {
+
+        this.miappIsOffline = this.getObjectFromLocalStorage('miappIsOffline') || false;
+        this.miappURI = this.getObjectFromLocalStorage('miappURI') || 'https://miapp.io/api';
 
         this.miappIsOffline = (typeof isOffline === 'undefined') ? this.miappIsOffline : isOffline;
 
@@ -75,7 +75,7 @@ export class MiappService {
     };
 
 
-    public login(login, password, updateProperties) : Promise<any> {
+    public login(login, password, updateProperties?) : Promise<any> {
 
         if (this.currentUser) return Promise.reject('miappServ already login');
 
@@ -245,22 +245,22 @@ export class MiappService {
 
 
     public isPouchDBEmpty(pouchDB) {
-      var self = this;
+      
       this.logger.log('isPouchDBEmpty ..');
       if (!pouchDB) {//if (!self.currentUser || !self.currentUser.email || !pouchDB) {
-          var error = 'DB search impossible. Need a user logged in. (' + self.currentUser + ')';
+          var error = 'DB search impossible. Need a user logged in. (' + this.currentUser + ')';
           this.logger.error(error);
           return Promise.reject(error);
       }
 
       this.logger.log('isPouchDBEmpty call');
-      return new Promise(function(resolve, reject) {
+      return new Promise((resolve, reject) => {
         pouchDB.allDocs({
           filter: function (doc) {
-            if (!self.currentUser) return doc;
-            if (doc.miappUserId == self.currentUser._id) return doc;
+            if (!this.currentUser) return doc;
+            if (doc.miappUserId == this.currentUser._id) return doc;
           }
-        }, function (err, response) {
+        }, (err, response) => {
           this.logger.log('isPouchDBEmpty callback');
           if (err) return reject(err);
 
@@ -286,9 +286,10 @@ export class MiappService {
         firstUser.miappUserId = firstUserId;
         firstUser.miappId = this.miappId;
         firstUser.miappAppVersion = this.miappVersion;
-        delete firstUser._id;
+       // delete firstUser._id;
+       firstUser._id = firstUserId;
         return new Promise(function(resolve, reject) {
-          pouchDB.put(firstUser, firstUserId, function (err, response) {
+          pouchDB.put(firstUser, firstUserId, (err, response) => {
             if (response && response.ok && response.id && response.rev) {
               firstUser._id = response.id;
               firstUser._rev = response.rev;
@@ -323,12 +324,15 @@ export class MiappService {
       //this.$this.logger.log('retrievedObject: ', JSON.parse(retrievedObject));
       return obj;
     }
-    */
+    
 }
 
+export class LoggerService {
+    log(message: String) {
+        console.log(message);
+    }
 
-
-export interface ILoggerService {
-    log(message: String): void;
-    error(message: String): void;
+    error(message: String) {
+        alert(message)
+    }
 }

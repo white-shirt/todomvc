@@ -5,6 +5,8 @@ import { StatusBar } from 'ionic-native';
 import { TabsPage } from '../pages/tabs/tabs';
 //import { AuthService } from './auth.service';
 import  {DataService} from '../providers/data.service'
+import  {MiappService} from '../providers/miapp.sdk.angular2'
+
 
 
 @Component({
@@ -13,11 +15,13 @@ import  {DataService} from '../providers/data.service'
 export class MyApp {
   rootPage = TabsPage;
 
-  constructor(platform: Platform, data : DataService) {
+  constructor(platform: Platform, data : DataService, miappService : MiappService) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       StatusBar.styleDefault();
+
+      miappService.init('581088e70b01be5b42170883', '', true)
 
     });
   }
