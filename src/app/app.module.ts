@@ -14,8 +14,11 @@ import { TodoListPage } from '../pages/todo-list/todo-list';
 import { TodoDetailPage } from '../pages/todo-detail/todo-detail';
 
 // services
-import { AuthService } from './auth.service';
-import { TodoService } from '../providers/todo.service'
+import { AuthService } from '../providers/auth.service';
+import { TodoService } from '../providers/todo.service';
+import { DataService } from '../providers/data.service';
+import { MiappService } from '../providers/miapp.sdk.angular2';
+
 
 @NgModule({
   declarations: [
@@ -42,6 +45,7 @@ import { TodoService } from '../providers/todo.service'
     TodoListPage,
     TodoDetailPage
   ],
-  providers: [AuthService, TodoService, JsonPipe]
+  providers: [AuthService, TodoService, JsonPipe, DataService, MiappService]
 })
+
 export class AppModule {}

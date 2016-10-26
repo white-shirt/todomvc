@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { NavController } from 'ionic-angular';
-import {AuthService} from "../../app/auth.service";
+import {AuthService} from "../../providers/auth.service";
 import { HomePage } from '../home/home';
 
 @Component({
@@ -15,13 +15,11 @@ export class LoginPage {
 
   }
 
-  login_(){
-    alert('Login //todo');
-  }
-
   login() {
     this.authService.login('my_mail','mY_password')
       .then( () => {
+
+
 
         this.navCtrl.pop();
         //this.navCtrl.push(HomePage)
