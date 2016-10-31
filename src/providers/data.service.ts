@@ -7,9 +7,10 @@ import { Injectable } from '@angular/core';
 // ie http://gonehybrid.com/how-to-use-pouchdb-sqlite-for-local-storage-in-ionic-2/
 // or http://www.joshmorony.com/part-2-creating-a-multiple-user-app-with-ionic-2-pouchdb-couchdb/
 //let PouchDB = require('pouchdb');
-import PouchDB from 'pouchdb'
+//import PouchDB from 'pouchdb'
 //import MiappService from './miapp.sdk.angular2'
-import { MiappService } from '../providers/miapp.sdk.angular2';
+
+import { Miapp2Service } from '../../node_modules/miappio-sdk/dist/miappio-sdk';
 
 
 /*export interface ImiappService {
@@ -27,9 +28,9 @@ export class DataService {
   private _dbInitialized = false;
 
 
-  constructor(private miappService : MiappService){
+  constructor(private miappService : Miapp2Service){
 
-    this._db = new PouchDB('miapp_db', { adapter: 'websql' });
+    // this._db = new PouchDB('miapp_db', { adapter: 'websql' });
     //this._db = cordova ? new PouchDB('miapp_db', {adapter: 'websql'}) : new PouchDB('miapp_db');
 
   }
@@ -49,7 +50,7 @@ export class DataService {
     return new Promise((resolve, reject) => {
 
     
-      this.miappService.isPouchDBEmpty(this._db)
+      this.miappService.isDbEmpty()
         .then( (isEmpty) => {
           if (!isEmpty) return Promise.resolve(); // already set
 
@@ -58,11 +59,11 @@ export class DataService {
         .then( (firstUser) => {
           if (!firstUser) return Promise.resolve(); // already set
 
-          return this.miappService.putFirstUserInEmptyPouchDB(this._db, firstUser);
+          return this.miappService.putFirstUserInEmptyDb(firstUser);
         })
         .then( (ret) => {
           //if (ret) return deferred.reject(err);
-          return this.miappService.syncPouchDb(this._db);
+          return this.miappService.syncDb();
         })
         .then( (ret) => {
           //if (ret) return deferred.reject(err);
@@ -83,23 +84,23 @@ export class DataService {
   syncDB(fnInitFirstData) : Promise<any> {
     if (!this._dbInitialized) return Promise.reject('Not initialized');
 
-    return new Promise(function(resolve, reject) {
-      this.miappService.isPouchDBEmpty(this._db)
-        .then(function (isEmpty) {
+    return new Promise( (resolve, reject) => {
+      this.miappService.isDbEmpty()
+        .then((isEmpty) => {
           if (isEmpty && fnInitFirstData) {
-            return fnInitFirstData(this._db);
+            return fnInitFirstData(this.miappService._db);
           }
           return Promise.resolve('ready to sync');
         })
-        .then(function (ret) {
-          return this.miappService.syncPouchDb(this._db);
+        .then((ret) => {
+          return this.miappService.syncDb();
         })
-        .then(function (err) {
+        .then( (err) => {
           if (err) return reject(err);
           //self.$log.log('srvDataContainer.sync resolved');
           resolve();
         })
-        .catch(function (err) {
+        .catch( (err) => {
           var errMessage = err ? err : 'pb with getting data';
           //self.$log.error(errMessage);
           reject(errMessage);
@@ -109,7 +110,7 @@ export class DataService {
 
 
   public putOnItem(item) {
-    return this.miappService.putInPouchDb(this._db, item);
+    return this.miappService.putInDb(item);
   }
 
 

@@ -17,7 +17,7 @@ import { TodoDetailPage } from '../pages/todo-detail/todo-detail';
 import { AuthService } from '../providers/auth.service';
 import { TodoService } from '../providers/todo.service';
 import { DataService } from '../providers/data.service';
-import { MiappService } from '../providers/miapp.sdk.angular2';
+import { Miapp2Service } from '../../node_modules/miappio-sdk/dist/miappio-sdk';
 
 
 @NgModule({
@@ -45,7 +45,7 @@ import { MiappService } from '../providers/miapp.sdk.angular2';
     TodoListPage,
     TodoDetailPage
   ],
-  providers: [AuthService, TodoService, JsonPipe, DataService, MiappService]
+  providers: [AuthService, TodoService, JsonPipe, DataService, Miapp2Service]
 })
 
 export class AppModule {}

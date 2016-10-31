@@ -5,7 +5,7 @@ import { StatusBar } from 'ionic-native';
 import { TabsPage } from '../pages/tabs/tabs';
 //import { AuthService } from './auth.service';
 import  {DataService} from '../providers/data.service'
-import  {MiappService} from '../providers/miapp.sdk.angular2'
+import  {Miapp2Service} from '../../node_modules/miappio-sdk/dist/miappio-sdk'
 
 
 
@@ -15,7 +15,7 @@ import  {MiappService} from '../providers/miapp.sdk.angular2'
 export class MyApp {
   rootPage = TabsPage;
 
-  constructor(platform: Platform, data : DataService, miappService : MiappService) {
+  constructor(platform: Platform, data : DataService, miappService : Miapp2Service) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
