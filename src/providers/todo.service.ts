@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 //import { Observable } from 'rxjs/Observable' ;
 //import 'rxjs/Rx';
 
+import {DataService} from "./data.service";
 
 @Injectable()
 export class TodoService {
@@ -20,12 +21,24 @@ export class TodoService {
             {titre: 'Tache 5', description: 'bla bla bla bla bla bla bla bla'}
         ];
 
-    constructor() {}
+    constructor(private dataService : DataService) {}
 
     // Load todos
     loadTodos() {
-        // TODO Call persistence
-        this.todos = TodoService.DATA_TEST;
+
+      let firstInit = function (miappService) {
+        for (let i = 0; i < TodoService.DATA_TEST.length; i++) {
+          miappService.putInDb(TodoService.DATA_TEST[i]);
+        }
+      };
+
+        this.dataService.syncDB(firstInit)
+          .then((msg)=>{
+            this.todos = TodoService.DATA_TEST;
+          })
+          .catch((err)=>{
+            alert(err);
+          });
         /*
             return Observable.create(observer => {
                 observer.next(DATA_TEST);
@@ -34,15 +47,22 @@ export class TodoService {
         */
     }
 
-    // Save todo and synchronize context
+    // Save task and synchronize context
     saveTodo(title : String, description : String) {
-        // TODO Call persistence
-        this.todos.push({titre: title, description: description}) ;
+      let task = {titre: title, description: description};
+      this.dataService.putInDB(task)
+        .then((data) => {
+          this.todos.push(data) ;
+        })
+        .catch((err)=>{
+          alert(err);
+        });
+
     }
 
     // Save todos
     saveTodos() {
-        // TODO Call persistence
+      // ??
     }
 
 }

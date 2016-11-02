@@ -5,7 +5,7 @@ import { StatusBar } from 'ionic-native';
 import { TabsPage } from '../pages/tabs/tabs';
 //import { AuthService } from './auth.service';
 import  {DataService} from '../providers/data.service'
-import  {Miapp2Service} from '../../node_modules/miappio-sdk/dist/miappio-sdk'
+import  {Miapp2Service} from '../../node_modules/miappio-sdk/dist/miapp.io'
 
 
 

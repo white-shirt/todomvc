@@ -10,7 +10,7 @@ import { Injectable } from '@angular/core';
 //import PouchDB from 'pouchdb'
 //import MiappService from './miapp.sdk.angular2'
 
-import { Miapp2Service } from '../../node_modules/miappio-sdk/dist/miappio-sdk';
+import { Miapp2Service } from '../../node_modules/miappio-sdk/dist/miapp.io';
 
 
 /*export interface ImiappService {
@@ -26,6 +26,7 @@ import { Miapp2Service } from '../../node_modules/miappio-sdk/dist/miappio-sdk';
 export class DataService {
   private _db;
   private _dbInitialized = false;
+  public dbRecordCount = 0;
 
 
   constructor(private miappService : Miapp2Service){
@@ -41,22 +42,20 @@ export class DataService {
   // Return Promise with this._db
   initDBWithLogin(login, password) : Promise<any> {
 
-
-    if (this._dbInitialized) return Promise.reject('Already initialized');
-    
-    //return this.miappService.login(login, password);
-
+    if (this._dbInitialized) return Promise.reject('DB already initialized');
 
     return new Promise((resolve, reject) => {
 
-    
       this.miappService.isDbEmpty()
         .then( (isEmpty) => {
           if (!isEmpty) return Promise.resolve(); // already set
 
+          return this.miappService.becarefulCleanDb();
+        })
+        .then(() => {
           return this.miappService.login(login, password);
         })
-        .then( (firstUser) => {
+        .then((firstUser) => {
           if (!firstUser) return Promise.resolve(); // already set
 
           return this.miappService.putFirstUserInEmptyDb(firstUser);
@@ -82,13 +81,13 @@ export class DataService {
   // If empty call fnInitFirstData(this._db), should return Promise to call sync
   // Return Promise with this._db
   syncDB(fnInitFirstData) : Promise<any> {
-    if (!this._dbInitialized) return Promise.reject('Not initialized');
+    if (!this._dbInitialized) return Promise.reject('DB not initialized');
 
     return new Promise( (resolve, reject) => {
       this.miappService.isDbEmpty()
         .then((isEmpty) => {
           if (isEmpty && fnInitFirstData) {
-            return fnInitFirstData(this.miappService._db);
+            return fnInitFirstData(this.miappService);
           }
           return Promise.resolve('ready to sync');
         })
@@ -98,18 +97,26 @@ export class DataService {
         .then( (err) => {
           if (err) return reject(err);
           //self.$log.log('srvDataContainer.sync resolved');
-          resolve();
+          return this.miappService._db.info();
+        })
+        .then((result) => {
+          this.dbRecordCount = result.doc_count;
+          resolve(this.dbRecordCount);
         })
         .catch( (err) => {
-          var errMessage = err ? err : 'pb with getting data';
+          var errMessage = err ? err : 'DB pb with getting data';
           //self.$log.error(errMessage);
           reject(errMessage);
         });
     });
   }
 
+  //
+  putInDB(item) : Promise<any> {
+    if (!this._dbInitialized) return Promise.reject('DB not initialized');
 
-  public putOnItem(item) {
+
+    this.dbRecordCount++;
     return this.miappService.putInDb(item);
   }
 

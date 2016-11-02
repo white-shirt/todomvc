@@ -9,27 +9,32 @@ export class AuthService {
 
   mail : string
   password : string
+  dataCacheOK : boolean
 
   constructor(private app: App, private data : DataService) {
-    console.log('MyAuthService constructor')
+    console.log('MyAuthService constructor');
+
+    this.mail = localStorage.getItem('mail');
+    this.password = localStorage.getItem('password');
+    this.dataCacheOK = false;
   }
 
+  login(mail? : string, password?: string) : Promise<any> {
 
-  //getHeroes(): void { alert('coucou');} // stub
-
-  login(mail : string, password : string) : Promise<boolean> {
-
-    //todo MLE implement
     console.log('MyAuthService.login('+mail+','+password+')');
-    this.mail = mail;
-    this.password = password;
+    if (this.dataCacheOK && !mail && !password)
+      return Promise.resolve();
 
-    localStorage.setItem('tokenTodo',this.mail);
+    if (mail && password) {
+      this.mail = mail;
+      localStorage.setItem('tokenTodo',this.mail);
+      localStorage.setItem('mail',this.mail);
+      this.password = password;
+      localStorage.setItem('password',this.password);
+    }
 
-
-    return this.data.initDBWithLogin(mail, password);
-
-    //return Promise.resolve(true); //logged in
+    this.dataCacheOK = true;
+    return this.data.initDBWithLogin(this.mail, this.password);
   }
 
   isAuthenticated() : boolean {

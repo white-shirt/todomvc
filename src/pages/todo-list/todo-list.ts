@@ -3,13 +3,14 @@ import { NavController } from 'ionic-angular';
 import { JsonPipe } from '@angular/common';
 
 import { TodoService } from '../../providers/todo.service';
+import {DataService} from "../../providers/data.service";
 import { TodoDetailPage } from '../todo-detail/todo-detail';
 
 @Component({
   selector: 'page-todo-list',
   templateUrl: 'todo-list.html'
 })
-export class TodoListPage {
+export class TodoListPage  {
 
   visibleMultiDelete : boolean = false ;
   todosToDelete : Array<number> = [];
@@ -17,7 +18,8 @@ export class TodoListPage {
   constructor(
       public navCtrl: NavController,
       public todoService: TodoService,
-      public jsonPipe: JsonPipe
+      public jsonPipe: JsonPipe,
+      public dataService : DataService
   ) {}
 
 
@@ -28,13 +30,13 @@ export class TodoListPage {
 
     ngOnInit() {
         this.todoService.loadTodos();
-        
+
 /*      TODO Traitement des erreurs
         this.todoService.getListTodos()
             .subscribe(code => {
-                
+
             }) ;
-*/            
+*/
     }
 
     gotoTodoDetail() {

@@ -17,7 +17,7 @@ import { TodoDetailPage } from '../pages/todo-detail/todo-detail';
 import { AuthService } from '../providers/auth.service';
 import { TodoService } from '../providers/todo.service';
 import { DataService } from '../providers/data.service';
-import { Miapp2Service } from '../../node_modules/miappio-sdk/dist/miappio-sdk';
+import { Miapp2Service } from '../../node_modules/miappio-sdk/dist/miapp.io';
 
 
 @NgModule({

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 import { NavController } from 'ionic-angular';
 import {AuthService} from "../../providers/auth.service";
+import {DataService} from "../../providers/data.service";
 import { LoginPage } from '../login/login';
 
 @Component({
@@ -10,26 +11,21 @@ import { LoginPage } from '../login/login';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController, public authService : AuthService) {
-
-    //console.log('check auth : '+this.mail);
-    //authService.checkAuthentication(); //todo on each modules ? in constructor ?
-    //if (this.authService.isAuthenticated()) return;
-    //this.navCtrl.push(LoginPage);
-
-
+  constructor(public navCtrl: NavController, public authService : AuthService, public dataService : DataService) {
   }
-  // Wait for the components in MyApp's template to be initialized
-  // In this case, we are waiting for the Nav with id="my-nav"
+
   ngAfterViewInit() {
-    // Let's navigate from TabsPage to Page1
-    console.log('home view init ?');
-    //this.navCtrl.push(LoginPage);
-    //console.log('home view init ?....');
+    console.log('Check authentification');
+    this.authService.login()
+      .catch((err)=>{
+        alert(err);
+        this.login();
+      });
   }
 
   login(){
     this.navCtrl.push(LoginPage)
   }
+
 
 }

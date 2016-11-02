@@ -7,6 +7,12 @@
 <ion-content padding>
 
   <h3>Welcome in an awesome simple Todo List App !</h3>
+  <ion-item>
+    <ion-icon name="cloud-done" item-left></ion-icon>
+    DB status
+    <ion-badge item-right>{{this.dataService.dbRecordCount}}</ion-badge>
+  </ion-item>
+
   <p>
     yeaaah :) :)
   </p>
@@ -20,5 +26,6 @@
 
   <p>Logged in</p>
   <button ion-button (click)="login()">login</button>
+
 
 </ion-content>
