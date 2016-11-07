@@ -1,10 +1,8 @@
-import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
-import { JsonPipe } from '@angular/common';
-
-import { TodoService } from '../../providers/todo.service';
-import {DataService} from "../../providers/data.service";
-import { TodoDetailPage } from '../todo-detail/todo-detail';
+import {Component} from "@angular/core";
+import {NavController} from "ionic-angular";
+import {JsonPipe} from "@angular/common";
+import {TodoService} from "../../providers/todo.service";
+import {TodoDetailPage} from "../todo-detail/todo-detail";
 
 @Component({
   selector: 'page-todo-list',
@@ -15,11 +13,9 @@ export class TodoListPage  {
   visibleMultiDelete : boolean = false ;
   todosToDelete : Array<number> = [];
 
-  constructor(
-      public navCtrl: NavController,
-      public todoService: TodoService,
-      public jsonPipe: JsonPipe,
-      public dataService : DataService
+  constructor(public navCtrl: NavController,
+              public todoService: TodoService,
+              public jsonPipe: JsonPipe
   ) {}
 
 
@@ -62,13 +58,13 @@ export class TodoListPage  {
             (index) => {
                 this.todoService.todos[index] = null;
             }
-        )
+        );
         this.todoService.todos =
             this.todoService.todos.filter(
                 (elt) => {
                     return elt != null ;
                 }
-            )
+            );
         this.todosToDelete = [] ;
         this.todoService.saveTodos();
     }

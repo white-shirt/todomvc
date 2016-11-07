@@ -1,8 +1,6 @@
-import { Component } from '@angular/core';
-
-import { NavController } from 'ionic-angular';
+import {Component} from "@angular/core";
+import {NavController} from "ionic-angular";
 import {AuthService} from "../../providers/auth.service";
-import { HomePage } from '../home/home';
 
 @Component({
   selector: 'page-login',
@@ -26,7 +24,7 @@ export class LoginPage {
 
         this.navCtrl.pop();
         //this.navCtrl.push(HomePage)
-      })
+      });
 
     //todo https://auth0.com/blog/ionic-2-authentication-how-to-secure-your-mobile-app-with-jwt/
 

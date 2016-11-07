@@ -1,13 +1,11 @@
-
-import { Component, OnInit } from '@angular/core';
-import { NavController } from 'ionic-angular';
-
-import { HomePage } from '../home/home';
-import { AboutPage } from '../about/about';
-import { ContactPage } from '../contact/contact';
-import { TodoListPage } from '../todo-list/todo-list';
+import {Component} from "@angular/core";
+import {NavController} from "ionic-angular";
+import {HomePage} from "../home/home";
+import {AboutPage} from "../about/about";
+import {ContactPage} from "../contact/contact";
+import {TodoListPage} from "../todo-list/todo-list";
 import {AuthService} from "../../providers/auth.service";
-import { LoginPage } from '../login/login';
+import {LoginPage} from "../login/login";
 
 @Component({
   templateUrl: 'tabs.html'
