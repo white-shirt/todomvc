@@ -1,7 +1,7 @@
 
 import { Injectable } from '@angular/core';
 import {App} from 'ionic-angular';
-import {DataService} from './data.service'
+import {Miapp2Service} from '../../node_modules/miappio-sdk/dist/miapp.io'
 
 @Injectable()
 export class AuthService {
@@ -11,7 +11,7 @@ export class AuthService {
   password : string
   dataCacheOK : boolean
 
-  constructor(private app: App, private data : DataService) {
+  constructor(private app: App, private miappService : Miapp2Service) {
     console.log('MyAuthService constructor');
 
     this.mail = localStorage.getItem('mail');
@@ -34,7 +34,7 @@ export class AuthService {
     }
 
     this.dataCacheOK = true;
-    return this.data.initDBWithLogin(this.mail, this.password);
+    return this.miappService.login(this.mail, this.password);
   }
 
   isAuthenticated() : boolean {
