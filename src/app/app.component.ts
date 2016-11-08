@@ -2,7 +2,7 @@ import {Component} from "@angular/core";
 import {Platform} from "ionic-angular";
 import {StatusBar} from "ionic-native";
 import {TabsPage} from "../pages/tabs/tabs";
-import {Miapp2Service} from "../../node_modules/miappio-sdk/dist/miapp.io";
+import {Miapp2Service} from "../../node_modules/miappio-sdk/dist/miappio.sdk2";
 
 
 @Component({

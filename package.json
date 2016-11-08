@@ -28,7 +28,7 @@
     "ionic-native": "2.2.3",
     "ionicons": "3.0.0",
     "miappio-sdk": "^1.0.35",
-    "pouchdb": "^6.0.6",
+    "pouchdb": "^6.0.7",
     "rxjs": "5.0.0-beta.12",
     "webcrypto-jwt": "^0.2.1",
     "zone.js": "0.6.21"

@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {Miapp2Service} from "../../node_modules/miappio-sdk/dist/miapp.io";
+import {Miapp2Service} from "miappio-sdk/dist/miappio.sdk2";
 
 //import { Observable } from 'rxjs/Observable' ;
 //import 'rxjs/Rx';
@@ -28,10 +28,12 @@ export class TodoService {
   // Load todos
   loadTodos() {
 
+
     let firstInit = function (miappService: Miapp2Service) {
       for (let i = 0; i < TodoService.DATA_TEST.length; i++) {
         miappService.put(TodoService.DATA_TEST[i]);
       }
+      return Promise.resolve();
     };
 
     //var test = Miappa;
@@ -42,9 +44,12 @@ export class TodoService {
       })
       .then((allDocs)=> {
         //this.todos = allDocs;
-        allDocs.rows.map((r) => {
-          if (r && r.doc) this.todos.push(r.doc);
-        });
+        this.todos.push({titre: 'Tache X', description: 'bla bla'});
+        this.todos.push({titre: 'Tache XX', description: 'bla bla'});
+        //todo
+        //allDocs.rows.map((r) => {
+        //  if (r && r.doc) this.todos.push(r.doc);
+        //});
       })
       .catch((err)=> {
         alert(err);

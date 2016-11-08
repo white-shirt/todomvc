@@ -18,15 +18,14 @@ export class LoginPage {
 
   login() {
     this.authService.login(this.email,this.password)
-      .then( () => {
+      .then((msg) => {
 
-
+        console.log(msg);
 
         this.navCtrl.pop();
         //this.navCtrl.push(HomePage)
       });
 
-    //todo https://auth0.com/blog/ionic-2-authentication-how-to-secure-your-mobile-app-with-jwt/
 
   }
 

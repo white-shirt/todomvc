@@ -1,15 +1,14 @@
-
-import { Injectable } from '@angular/core';
-import {App} from 'ionic-angular';
-import {Miapp2Service} from '../../node_modules/miappio-sdk/dist/miapp.io'
+import {Injectable} from "@angular/core";
+import {App} from "ionic-angular";
+import {Miapp2Service} from "../../node_modules/miappio-sdk/dist/miappio.sdk2";
 
 @Injectable()
 export class AuthService {
 
 
-  mail : string
-  password : string
-  dataCacheOK : boolean
+  mail: string;
+  password: string;
+  dataCacheOK: boolean;
 
   constructor(private app: App, private miappService : Miapp2Service) {
     console.log('MyAuthService constructor');

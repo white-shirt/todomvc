@@ -12,7 +12,7 @@ import {TodoListPage} from "../pages/todo-list/todo-list";
 import {TodoDetailPage} from "../pages/todo-detail/todo-detail";
 import {AuthService} from "../providers/auth.service";
 import {TodoService} from "../providers/todo.service";
-import {Miapp2Service} from "../../node_modules/miappio-sdk/dist/miapp.io";
+import {Miapp2Service} from "../../node_modules/miappio-sdk/dist/miappio.sdk2";
 
 // pages
 
