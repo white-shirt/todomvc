@@ -15,8 +15,12 @@ export class HomePage {
   ngAfterViewInit() {
     console.log('Check authentification');
     this.authService.login()
+      .then((user) => {
+        console.log('Authentified !');
+        console.log(user);
+      })
       .catch((err)=>{
-        alert(err);
+        console.log('Not authentified : ' + err);
         this.login();
       });
   }

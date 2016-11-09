@@ -10,7 +10,7 @@ import {Miapp2Service} from "miappio-sdk/dist/miappio.sdk2";
 export class TodoService {
 
   // Data context
-  public todos: Array<{}>;
+  public todos: Array<{}> = [];
 
   // Mock
   static DATA_TEST =
@@ -37,19 +37,18 @@ export class TodoService {
     };
 
     //var test = Miappa;
+    //let self = this;
+    //debugger;
+    //self.todos.push({titre: 'Tache Y', description: 'bla bla'});
     this.miappService.sync(firstInit)
       .then((msg)=> {
-        //this.todos = TodoService.DATA_TEST;
+        this.todos = [];
         return this.miappService.findAll();
       })
       .then((allDocs)=> {
-        //this.todos = allDocs;
-        this.todos.push({titre: 'Tache X', description: 'bla bla'});
-        this.todos.push({titre: 'Tache XX', description: 'bla bla'});
-        //todo
-        //allDocs.rows.map((r) => {
-        //  if (r && r.doc) this.todos.push(r.doc);
-        //});
+        allDocs.rows.map((r) => {
+          if (r && r.doc) this.todos.push(r.doc);
+        });
       })
       .catch((err)=> {
         alert(err);
@@ -68,6 +67,7 @@ export class TodoService {
     this.miappService.put(task)
       .then((data) => {
         this.todos.push(data);
+        this.loadTodos();
       })
       .catch((err)=> {
         alert(err);
