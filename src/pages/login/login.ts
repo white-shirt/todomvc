@@ -16,27 +16,26 @@ export class LoginPage {
 
 
   ngAfterViewInit() {
-    console.log('Check authentification');
-    this.authService.login()
-      .then((user) => {
-        console.log('Authentified after loading !');
-        console.log(user);
-        this.navCtrl.pop();
-      })
-      .catch((err)=> {
-        console.log('Still not authentified : ' + err);
-      });
+    console.log('login.Check authentification');
+    if (this.authService.isAuthenticated()) {
+      console.log('login.Logged in.');
+      this.navCtrl.pop();
+      //this.navCtrl.push(HomePage)
+    }
   }
 
   login() {
     this.authService.login(this.email,this.password)
       .then((msg) => {
-        console.log('Logged in : ' + msg);
-        this.navCtrl.pop();
-        //this.navCtrl.push(HomePage)
+        console.log('login.Logged in ? ' + msg);
+        if (this.authService.isAuthenticated()) {
+          console.log('login.Logged in.');
+          this.navCtrl.pop();
+          //this.navCtrl.push(HomePage)
+        }
       })
       .catch((err) => {
-        console.log('login pb : ' + err);
+        console.log('login.login pb : ' + err);
       });
 
 
